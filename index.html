@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Migs Tools | Portal</title>
+    
+    <title>Migs Tools - Ferramentas e Recursos para Desenvolvedores e Usuários</title>
+    <meta name="description" content="O Migs Tools é um site que oferece ferramentas úteis e recursos para desenvolvedores e usuários, ajudando a aumentar a produtividade e a aprender novas habilidades.">
+    
     <style>
         /* DESIGN DARK MINIMALISTA */
         * {
@@ -19,50 +22,63 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            align-items: center;
+            overflow-x: hidden;
         }
 
+        /* NAVBAR / HEADER */
         header {
             width: 100%;
-            padding: 20px;
-            background-color: #151515;
+            padding: 15px 40px;
+            background-color: #000000; /* Fundo preto para combinar com a logo */
             border-bottom: 1px solid #222;
-            text-align: center;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        header h1 {
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            color: #fff;
-            margin: 0 auto;
+        .logo-img {
+            max-height: 50px;
+            object-fit: contain;
         }
 
-        .logout-btn {
-            display: none;
-            background: transparent;
-            color: #ff4757;
-            border: 1px solid #ff4757;
-            padding: 5px 15px;
-            border-radius: 4px;
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #888;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
             cursor: pointer;
-            position: absolute;
-            right: 20px;
         }
 
-        .logout-btn:hover {
-            background: #ff4757;
-            color: white;
+        nav a:hover, nav a.active {
+            color: #ffffff;
         }
 
         /* CONTAINER PRINCIPAL */
         .container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 1100px;
+            margin: 0 auto;
             padding: 40px 20px;
-            animation: fadeIn 0.3s ease;
+            flex: 1;
+        }
+
+        /* SEÇÕES GERAIS */
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .section.active {
+            display: block;
         }
 
         @keyframes fadeIn {
@@ -70,105 +86,31 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* SEÇÃO DE AUTENTICAÇÃO (LOGIN/REGISTRO) */
-        .auth-box {
-            max-width: 400px;
-            margin: 0 auto;
-            background: #181818;
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #222;
-            text-align: center;
-        }
-
-        .auth-box h2 {
-            margin-bottom: 20px;
+        .section-title {
+            font-size: 2rem;
             color: #fff;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
         }
 
-        .input-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
+        .section-desc {
             color: #888;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            max-width: 600px;
         }
 
-        .auth-box input {
-            width: 100%;
-            background: #0f0f0f;
-            border: 1px solid #333;
-            padding: 12px;
-            border-radius: 6px;
-            color: white;
-            outline: none;
-        }
-
-        .auth-box input:focus {
-            border-color: #fff;
-        }
-
-        .auth-box button {
-            width: 100%;
-            background: #fff;
-            color: #000;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: 0.2s;
-        }
-
-        .auth-box button:hover {
-            background: #ddd;
-        }
-
-        .toggle-auth {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #888;
-            cursor: pointer;
-        }
-
-        .toggle-auth:hover {
-            color: #fff;
-        }
-
-        .error-msg {
-            color: #ff4757;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            display: none;
-        }
-
-        /* SEÇÃO DO DASHBOARD (FERRAMENTAS) */
-        #dashboard {
-            display: none;
-        }
-
-        .welcome-msg {
-            font-size: 1.5rem;
-            color: #fff;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
+        /* GRIDS DOS CARDS */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
         .card {
-            background: #181818;
+            background: #151515;
             border: 1px solid #222;
-            padding: 25px;
+            padding: 30px;
             border-radius: 12px;
             text-decoration: none;
             color: #d1d1d1;
@@ -181,32 +123,67 @@
         .card:hover {
             border-color: #555;
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
         }
 
         .card h3 {
             color: #fff;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 10px;
         }
 
         .card p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #888;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            line-height: 1.5;
         }
 
-        .card-btn {
+        .btn {
             margin-top: auto;
-            background: #2a2a2a;
-            color: #fff;
-            padding: 8px 15px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            border: 1px solid #333;
+            background: #ffffff;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
         }
 
-        /* Ferramenta Integrada: Gerador de Senha */
+        .btn:hover {
+            background: #ddd;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1px solid #fff;
+        }
+
+        .btn-outline:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .tag {
+            background: #2a2a2a;
+            color: #aaa;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        /* UTILITÁRIOS ESPECÍFICOS */
         #password-result {
             margin-top: 15px;
             padding: 10px;
@@ -217,148 +194,154 @@
             color: #00ffcc;
             display: none;
             word-break: break-all;
+            width: 100%;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; padding: 20px; }
+            nav { width: 100%; justify-content: center; flex-wrap: wrap; }
+            .section-title { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>MIGS TOOLS</h1>
-        <button id="logoutBtn" class="logout-btn" onclick="logout()">Sair</button>
+        <img src="Picsart_26-06-05_15-03-02-569.png" alt="Migs Studios" class="logo-img">
+        <nav>
+            <a onclick="navigate('home')" id="nav-home" class="active">Home</a>
+            <a onclick="navigate('ferramentas')" id="nav-ferramentas">Ferramentas</a>
+            <a onclick="navigate('recursos')" id="nav-recursos">Recursos</a>
+            <a onclick="navigate('sobre')" id="nav-sobre">Sobre</a>
+        </nav>
     </header>
 
     <div class="container">
         
-        <div id="auth-section" class="auth-box">
-            <h2 id="auth-title">Login</h2>
+        <section id="home" class="section active">
+            <h1 class="section-title">Bem-vindo ao ecossistema Migs Tools.</h1>
+            <p class="section-desc">Uma suíte minimalista desenvolvida para turbinar a sua produtividade, simplificar o código e centralizar as melhores ferramentas em um só lugar.</p>
             
-            <div class="input-group">
-                <label>Usuário</label>
-                <input type="text" id="username" placeholder="Digite seu usuário">
-            </div>
-            
-            <div class="input-group">
-                <label>Senha</label>
-                <input type="password" id="password" placeholder="Digite sua senha">
-            </div>
+            <button class="btn" onclick="navigate('ferramentas')">Explorar Ferramentas</button>
+            <button class="btn btn-outline" style="margin-left: 10px;" onclick="navigate('sobre')">Conheça o Projeto</button>
+        </section>
 
-            <p id="errorMsg" class="error-msg">Usuário ou senha incorretos.</p>
+        <section id="ferramentas" class="section">
+            <h1 class="section-title">Ferramentas</h1>
+            <p class="section-desc">Acesse nossos geradores e assistentes focados em desenvolvimento e produtividade.</p>
 
-            <button id="auth-action-btn" onclick="handleAuth()">Entrar</button>
-            <p id="toggle-txt" class="toggle-auth" onclick="toggleAuthMode()">Não tem conta? Registre-se aqui.</p>
-        </div>
-
-        <div id="dashboard">
-            <h2 class="welcome-msg">Bem-vindo(a), <span id="userDisplay"></span>!</h2>
-            
             <div class="grid">
-                <a href="https://migs-ai.vercel.app" target="_blank" class="card">
-                    <h3>Migs AI 🤖</h3>
-                    <p>Sua assistente virtual direta, objetiva e tunada com Llama 3.</p>
-                    <span class="card-btn">Acessar IA</span>
-                </a>
+                <div class="card">
+                    <span class="tag">Inteligência Artificial</span>
+                    <div class="card-icon">🤖</div>
+                    <h3>Migs AI</h3>
+                    <p>Assistente virtual integrada com Llama 3. Ideal para gerar scripts, exploits e trocar uma ideia de brother.</p>
+                    <a href="https://migs-ai.vercel.app" target="_blank" class="btn">Acessar Web App</a>
+                </div>
 
-                <div class="card" style="cursor: default;">
-                    <h3>Gerador de Senhas 🔑</h3>
-                    <p>Crie senhas fortes e seguras instantaneamente.</p>
-                    <button class="card-btn" style="cursor:pointer;" onclick="generatePassword()">Gerar Senha Forte</button>
+                <div class="card">
+                    <span class="tag">Segurança</span>
+                    <div class="card-icon">🔑</div>
+                    <h3>Gerador de Senha</h3>
+                    <p>Crie senhas criptograficamente seguras instantaneamente com base em algoritmos pseudoaleatórios.</p>
+                    <button class="btn" onclick="generatePassword()">Gerar Hash</button>
                     <div id="password-result"></div>
                 </div>
 
-                <div class="card" style="opacity: 0.5; cursor: not-allowed;">
-                    <h3>Scripts Hub 📂</h3>
-                    <p>Repositório de exploits e automações úteis.</p>
-                    <span class="card-btn" style="background: transparent; border: none; padding:0;">Em breve...</span>
+                <div class="card" style="opacity: 0.7;">
+                    <span class="tag">Dev Tools</span>
+                    <div class="card-icon">💻</div>
+                    <h3>Validador JSON</h3>
+                    <p>Formate e valide suas estruturas de dados JSON rapidamente.</p>
+                    <button class="btn btn-outline">Em Desenvolvimento...</button>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section id="recursos" class="section">
+            <h1 class="section-title">Recursos e Aprendizado</h1>
+            <p class="section-desc">Tutoriais, dicas e artigos para você masterizar suas habilidades e tirar o máximo do Migs Tools.</p>
+
+            <div class="grid">
+                <div class="card">
+                    <span class="tag">Tutorial</span>
+                    <h3>Como a Migs AI foi feita?</h3>
+                    <p>Um mergulho na arquitetura de prompts de sistema usando a API da Groq e modelos Llama em tempo real.</p>
+                    <button class="btn btn-outline">Ler Artigo</button>
+                </div>
+
+                <div class="card">
+                    <span class="tag">Dica Rápida</span>
+                    <h3>Produtividade no Terminal</h3>
+                    <p>Aprenda atalhos de scripts e exploits básicos para agilizar seu workflow no dia a dia.</p>
+                    <button class="btn btn-outline">Ler Artigo</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" class="section">
+            <h1 class="section-title">Sobre o Migs Tools</h1>
+            <p class="section-desc">A história por trás da criação e da mente que desenvolveu tudo isso.</p>
+
+            <div class="card" style="max-width: 800px; margin: 0 auto; display: block; text-align: left;">
+                <h3 style="margin-bottom: 20px;">A Visão da Migs Studios</h3>
+                <p>O <strong>Migs Tools</strong> nasceu da necessidade de ter um ambiente unificado, rápido e focado em eficiência. Desenvolvido por <strong>Migs</strong>, o projeto evoluiu de uma simples interface de chat para um hub completo de recursos.</p>
+                
+                <p>Nossa inteligência artificial principal, a Migs AI, possui uma personalidade única — como se tivesse 16 anos, usando gírias como "brother" e "mano" —, o que a torna não apenas uma ferramenta, mas uma parceira de código de verdade.</p>
+                
+                <hr style="border: 0; border-top: 1px solid #333; margin: 25px 0;">
+                
+                <h3 style="margin-bottom: 10px; font-size: 1.1rem;">Stack Tecnológica Oficial:</h3>
+                <ul style="color: #888; margin-left: 20px; margin-bottom: 25px; line-height: 1.6;">
+                    <li><strong>Front-end:</strong> HTML5, CSS3, Vanilla JavaScript.</li>
+                    <li><strong>Back-end/Integração:</strong> Node.js (Ambiente), APIs RESTful (Groq).</li>
+                    <li><strong>Hospedagem:</strong> Infraestrutura Edge via Vercel.</li>
+                </ul>
+
+                <button class="btn btn-outline">Entrar em Contato</button>
+            </div>
+        </section>
 
     </div>
 
     <script>
-        let isLoginMode = true;
-
-        // Verifica se já está logado ao abrir a página
-        window.onload = () => {
-            const loggedUser = localStorage.getItem('migsLoggedUser');
-            if (loggedUser) showDashboard(loggedUser);
-        };
-
-        function toggleAuthMode() {
-            isLoginMode = !isLoginMode;
-            document.getElementById('auth-title').innerText = isLoginMode ? 'Login' : 'Criar Conta';
-            document.getElementById('auth-action-btn').innerText = isLoginMode ? 'Entrar' : 'Registrar';
-            document.getElementById('toggle-txt').innerText = isLoginMode ? 'Não tem conta? Registre-se aqui.' : 'Já tem conta? Faça Login.';
-            document.getElementById('errorMsg').style.display = 'none';
-        }
-
-        function handleAuth() {
-            const user = document.getElementById('username').value.trim();
-            const pass = document.getElementById('password').value.trim();
-            const errorMsg = document.getElementById('errorMsg');
-
-            if (!user || !pass) {
-                errorMsg.innerText = "Preencha todos os campos.";
-                errorMsg.style.display = 'block';
-                return;
-            }
-
-            if (isLoginMode) {
-                // Modo Login
-                const savedPass = localStorage.getItem('migs_user_' + user);
-                if (savedPass && savedPass === pass) {
-                    localStorage.setItem('migsLoggedUser', user);
-                    showDashboard(user);
-                } else {
-                    errorMsg.innerText = "Usuário ou senha incorretos.";
-                    errorMsg.style.display = 'block';
-                }
-            } else {
-                // Modo Registro
-                if (localStorage.getItem('migs_user_' + user)) {
-                    errorMsg.innerText = "Este usuário já existe.";
-                    errorMsg.style.display = 'block';
-                } else {
-                    localStorage.setItem('migs_user_' + user, pass);
-                    localStorage.setItem('migsLoggedUser', user); // Já loga automático
-                    showDashboard(user);
-                }
-            }
-        }
-
-        function showDashboard(username) {
-            document.getElementById('auth-section').style.display = 'none';
-            document.getElementById('dashboard').style.display = 'block';
-            document.getElementById('logoutBtn').style.display = 'block';
-            document.getElementById('userDisplay').innerText = username;
+        // SISTEMA DE NAVEGAÇÃO (SPA - Single Page Application)
+        function navigate(sectionId) {
+            // 1. Esconde todas as seções
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
             
-            // Limpa os campos
-            document.getElementById('username').value = '';
-            document.getElementById('password').value = '';
-            document.getElementById('errorMsg').style.display = 'none';
+            // 2. Remove o destaque de todos os links da Navbar
+            document.querySelectorAll('nav a').forEach(navLink => {
+                navLink.classList.remove('active');
+            });
+
+            // 3. Mostra a seção desejada e destaca o link
+            document.getElementById(sectionId).classList.add('active');
+            document.getElementById('nav-' + sectionId).classList.add('active');
+            
+            // 4. Rola suavemente para o topo ao trocar de aba
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function logout() {
-            localStorage.removeItem('migsLoggedUser');
-            document.getElementById('dashboard').style.display = 'none';
-            document.getElementById('logoutBtn').style.display = 'none';
-            document.getElementById('auth-section').style.display = 'block';
-            isLoginMode = true;
-            toggleAuthMode(); // Reseta para a tela de login
-        }
-
-        // Função bônus: Gerador de Senhas integrado
+        // FERRAMENTA: GERADOR DE SENHA
         function generatePassword() {
             const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
             let password = "";
-            for (let i = 0; i < 16; i++) {
+            for (let i = 0; i < 20; i++) {
                 password += chars.charAt(Math.floor(Math.random() * chars.length));
             }
             const resultDiv = document.getElementById('password-result');
             resultDiv.innerText = password;
             resultDiv.style.display = 'block';
+            
+            // Efeito de feedback
+            resultDiv.style.animation = "none";
+            setTimeout(() => resultDiv.style.animation = "fadeIn 0.3s ease", 10);
         }
     </script>
 </body>
-  </html>
-  
+        </html>
+                
